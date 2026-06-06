@@ -30,7 +30,27 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
     >
-      <body className="h-full flex overflow-hidden text-slate-900 bg-slate-50/50">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                let theme = localStorage.getItem('theme');
+                if (!theme) {
+                  theme = 'system';
+                  localStorage.setItem('theme', theme);
+                }
+                if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="h-full flex overflow-hidden text-slate-900 dark:text-slate-100 bg-slate-50/50 dark:bg-slate-950 transition-colors duration-300">
         <UserProvider>
           <Sidebar />
           <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
