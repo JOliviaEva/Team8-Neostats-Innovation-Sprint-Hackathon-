@@ -10,7 +10,7 @@ import chromadb
 import pdfplumber
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from app.config import settings
 

@@ -18,6 +18,7 @@ interface AppContextType {
   currentDocName: string | null;
   isLoading: boolean;
   login: (username: string, password: string) => Promise<void>;
+  register: (username: string, password: string) => Promise<void>;
   logout: () => void;
   newChat: () => void;
   switchSession: (sid: string) => Promise<void>;
@@ -50,6 +51,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const login = useCallback(
     async (username: string, password: string) => {
       const data = await authAPI.login(username, password);
+      setAuth({ username: data.username, userId: data.user_id });
+      await refreshSessions(data.user_id);
+    },
+    [refreshSessions]
+  );
+
+  const register = useCallback(
+    async (username: string, password: string) => {
+      const data = await authAPI.register(username, password);
       setAuth({ username: data.username, userId: data.user_id });
       await refreshSessions(data.user_id);
     },
@@ -152,6 +162,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         currentDocName,
         isLoading,
         login,
+        register,
         logout,
         newChat,
         switchSession,
