@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
+import { UserProvider } from "@/context/UserContext";
+import { AppProvider } from "@/context/AppContext";
+import ShellWrapper from "@/components/ShellWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,11 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dashboard | AI Assistant",
-  description: "Next-gen AI assistant dashboard",
+  title: "NeoPulse AI",
+  description: "Next-gen AI assistant for Christ University",
 };
-
-import { UserProvider } from "@/context/UserContext";
 
 export default function RootLayout({
   children,
@@ -30,12 +30,11 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
     >
-      <body className="h-full flex overflow-hidden text-slate-900 bg-slate-50/50">
+      <body className="h-full flex overflow-hidden text-slate-900 bg-white">
         <UserProvider>
-          <Sidebar />
-          <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
-            {children}
-          </main>
+          <AppProvider>
+            <ShellWrapper>{children}</ShellWrapper>
+          </AppProvider>
         </UserProvider>
       </body>
     </html>
