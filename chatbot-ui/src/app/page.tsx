@@ -25,7 +25,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="flex-1 h-full relative p-6 md:p-12 flex flex-col overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/50">
+    <div className="flex-1 h-full relative p-6 md:p-12 flex flex-col overflow-hidden bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-50 via-white to-indigo-50">
       
       {/* Top Right Logo */}
 

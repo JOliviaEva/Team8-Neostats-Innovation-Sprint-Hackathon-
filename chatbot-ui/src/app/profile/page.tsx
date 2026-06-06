@@ -33,78 +33,80 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="flex-1 p-6 md:p-12 overflow-y-auto bg-gradient-to-br from-slate-50 via-white to-blue-50/50">
+    <div className="flex-1 p-6 md:p-12 overflow-y-auto bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-50 via-slate-50 to-purple-50">
       <div className="max-w-2xl mx-auto">
         
         <div className="mb-10 text-center md:text-left">
-          <h1 className="text-4xl font-bold text-slate-800 tracking-tight">Profile Settings</h1>
-          <p className="text-slate-500 mt-2">Manage your account details and personalization.</p>
+          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight">Account Settings</h1>
+          <p className="text-slate-500 mt-2">Manage your account details and application preferences.</p>
         </div>
         
-        <div className="bg-white/80 backdrop-blur-md rounded-[2rem] p-8 border border-slate-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 md:p-10 border border-white shadow-[0_8px_40px_rgb(0,0,0,0.04)]">
           
-          <div className="flex flex-col md:flex-row items-center gap-6 mb-10 pb-8 border-b border-slate-100">
-            <div className="relative">
-              <div className="w-28 h-28 rounded-full overflow-hidden bg-gradient-to-tr from-blue-100 to-purple-100 p-1 shadow-md flex-shrink-0">
-                <img src={formData.avatar} alt="Avatar Preview" className="w-full h-full object-cover rounded-full border-4 border-white" />
-              </div>
-            </div>
-            <div className="text-center md:text-left">
-              <h2 className="text-2xl font-bold text-slate-800">{formData.name}</h2>
-              <p className="text-slate-500 mt-1">{formData.email}</p>
-            </div>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-8">
             
+            {/* Personal Information */}
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Display Name</label>
-              <div className="relative">
-                <User size={18} className="absolute left-4 top-3.5 text-slate-400" />
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full pl-11 pr-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-800 font-medium placeholder:font-normal"
-                  required
-                />
+              <h3 className="text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">Personal Information</h3>
+              <div className="space-y-5">
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">Display Name</label>
+                  <div className="relative">
+                    <User size={18} className="absolute left-4 top-3.5 text-slate-400" />
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full pl-11 pr-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-800 font-medium placeholder:font-normal"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
+                  <div className="relative">
+                    <Mail size={18} className="absolute left-4 top-3.5 text-slate-400" />
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full pl-11 pr-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-800 font-medium placeholder:font-normal"
+                      required
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
+            {/* Application Preferences */}
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
-              <div className="relative">
-                <Mail size={18} className="absolute left-4 top-3.5 text-slate-400" />
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full pl-11 pr-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-800 font-medium placeholder:font-normal"
-                  required
-                />
+              <h3 className="text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">Application Preferences</h3>
+              <div className="space-y-5">
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">Theme Preference</label>
+                  <select className="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-800 font-medium appearance-none">
+                    <option value="light">Light Mode (Default)</option>
+                    <option value="dark">Dark Mode</option>
+                    <option value="system">System Default</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">Language</label>
+                  <select className="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-800 font-medium appearance-none">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                  </select>
+                </div>
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Avatar URL</label>
-              <div className="relative">
-                <ImageIcon size={18} className="absolute left-4 top-3.5 text-slate-400" />
-                <input
-                  type="url"
-                  name="avatar"
-                  value={formData.avatar}
-                  onChange={handleChange}
-                  placeholder="https://example.com/avatar.jpg"
-                  className="w-full pl-11 pr-4 py-3 bg-slate-50/50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all text-slate-800 font-medium placeholder:font-normal"
-                  required
-                />
-              </div>
-              <p className="text-sm text-slate-500 mt-2 ml-1">Provide a direct link to an image to update your avatar.</p>
-            </div>
-
-            <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+            <div className="pt-6 mt-8 border-t border-slate-100 flex items-center justify-between">
               <span className="text-sm text-emerald-600 font-semibold flex items-center gap-2 transition-all duration-300" style={{ opacity: saved ? 1 : 0, transform: saved ? 'translateY(0)' : 'translateY(10px)' }}>
                 <Save size={16} /> Successfully saved!
               </span>
