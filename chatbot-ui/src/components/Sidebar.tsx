@@ -39,14 +39,6 @@ export default function Sidebar() {
           }`}
       >
         <div className="flex flex-col h-full">
-          {/* Desktop Toggle Button */}
-          <button 
-            onClick={toggleSidebar} 
-            className="absolute -right-4 top-8 bg-white border border-slate-200 text-slate-400 hover:text-blue-500 rounded-full p-1.5 hidden md:flex items-center justify-center shadow-sm z-50 transition-colors"
-          >
-            {isOpen ? <ChevronsLeft size={16} /> : <Menu size={16} />}
-          </button>
-
           {/* Header - Logo */}
           <div className="flex items-center justify-start p-4 mb-2 min-h-[80px]">
             {isOpen ? (
@@ -54,9 +46,16 @@ export default function Sidebar() {
                 <img src="/assest/logo3.png" alt="NeoPulse" className="w-full h-full object-contain object-left mix-blend-multiply" />
               </div>
             ) : (
-              <div className="w-10 h-10 flex-shrink-0 mx-auto">
-                <img src="/assest/logo3.png" alt="NeoPulse" className="w-full h-full object-cover rounded-xl shadow-sm" />
-              </div>
+              <button 
+                onClick={() => setIsOpen(true)}
+                className="w-10 h-10 flex-shrink-0 mx-auto relative group outline-none"
+                title="Expand Sidebar"
+              >
+                <img src="/assest/logo3.png" alt="NeoPulse" className="w-full h-full object-cover rounded-xl shadow-sm group-hover:opacity-20 transition-opacity" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Menu size={18} className="text-blue-600" />
+                </div>
+              </button>
             )}
           </div>
 
@@ -120,16 +119,15 @@ export default function Sidebar() {
           {/* Bottom Widgets */}
           <div className="p-4 flex flex-col gap-2 mt-auto">
             
-            {/* User Profile Area Moved to Bottom */}
+            {/* User Profile Area */}
             <div className={`flex items-center gap-3 py-3 mb-2 rounded-2xl border border-slate-100 shadow-sm bg-gradient-to-tr from-slate-50 to-white transition-all ${isOpen ? 'px-4 mx-1' : 'justify-center mx-0 px-0'}`}>
-              <div className="w-9 h-9 rounded-full bg-blue-100 flex-shrink-0 overflow-hidden border border-slate-200">
-                <img src={avatar} alt={name} className="w-full h-full object-cover" />
-              </div>
-              {isOpen && (
-                <div className="flex flex-col">
-                  <span className="font-semibold text-sm text-slate-800">{name}</span>
+              {isOpen ? (
+                <div className="flex flex-col w-full">
+                  <span className="font-semibold text-sm text-slate-800">Admin</span>
                   <span className="text-[10px] text-slate-400 uppercase tracking-wider font-medium">Free Plan</span>
                 </div>
+              ) : (
+                <span className="font-bold text-sm text-slate-800">A</span>
               )}
             </div>
 
